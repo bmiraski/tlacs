@@ -10,7 +10,3 @@ def test(did_pass):
         msg = ("Test at line {0} FAILED.".format(linenum))
     print(msg)
 
-def test_suite():
-    """ 
-    Run the suite of tests for code in this module (this file).
-    """
