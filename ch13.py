@@ -57,6 +57,44 @@ def snakefile(file):
         g.write(v)
     g.close()
 
+def numberlines(file):
+    """
+    Returns a copy of a file with all lines numbered
+    """
+    f = open(file, "r")
+    xs = f.readlines()
+    f.close()
+
+    numlines = []
+    layout = "{0:>5} {1}"
+    for i in range(len(xs)):
+        num = layout.format(i+1, xs[i])
+        numlines.append(num)
+
+    g = open("linenumbers.txt", "w")
+    for v in numlines:
+        g.write(v)
+    g.close()
+
+def nolines(file):
+    """
+    Removes line numbers from files
+    """
+    f = open(file, "r")
+    xs = f.readlines()
+    f.close()
+
+    nonum = []
+    for i in range(len(xs)):
+        s = xs[i]
+        short = s[6:]
+        nonum.append(short)
+
+    g = open("nonum.txt","w")
+    for v in nonum:
+        g.write(v)
+    g.close()
+
 #url = "https://en.wikipedia.org/wiki/Cobra"
 #destination_filename = "cobra.txt"
 
@@ -65,3 +103,7 @@ def snakefile(file):
 #reversefile("test.txt")
 
 #snakefile("cobra.txt")
+
+#numberlines("ch7.py")
+
+nolines("linenumbers.txt")
