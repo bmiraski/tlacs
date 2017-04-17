@@ -377,18 +377,24 @@ def main():
     bd = list(range(8))     # Generate the initial permutation
     num_found = 0
     tries = 0
+    results = []
     while num_found < 10:
        rng.shuffle(bd)
        tries += 1
        if not has_clashes(bd):
-           print("Found solution {0} in {1} tries.".format(bd, tries))
-           tries = 0
-           num_found += 1
+           if bd in results:
+               print ("Found a solution, but it was already found!")
+           else:
+               results.append(bd[:])
+               print("Found solution {0} in {1} tries.".format(bd, tries))
+               tries = 0
+               num_found += 1
+    print(results)
 
 t0 = time.clock()
-#main()
+main()
 t1 = time.clock()
-#print("That took {0:.4f} seconds.".format(t1 - t0))
+print("That took {0:.4f} seconds.".format(t1 - t0))
 
 def main_flipx():
     import random
@@ -536,25 +542,25 @@ def atleast(num):
 #test(lotto_matches([42,4,7,11,1,13], my_tickets) == [1,2,3,1])
 
 
-t0 = time.clock()
-tries3 = 0
-dots = ""
-for x in range(20):
-    tries3 += atleast(3)
-    dots += "."
-    print (dots)
-tries4 = 0
-for x in range(20):
-    tries4 += atleast(4)
-    dots += "."
-    print (dots)
-tries5 = 0
-for x in range(20):
-    tries5 += atleast(5)
-    dots += "."
-    print (dots)
-print ("On average it took {0:.2f} tries to get three matches".format(tries3/20))
-print ("On average it took {0:.2f} tries to get four matches".format(tries4/20))
-print ("On average it took {0:.2f} tries to get five matches".format(tries5/20))
-t1 = time.clock()
-print("That took {0:.4f} seconds.".format(t1 - t0))
+#t0 = time.clock()
+#tries3 = 0
+#dots = ""
+#for x in range(20):
+#    tries3 += atleast(3)
+#    dots += "."
+#    print (dots)
+#tries4 = 0
+#for x in range(20):
+#    tries4 += atleast(4)
+#    dots += "."
+#    print (dots)
+#tries5 = 0
+#for x in range(20):
+#    tries5 += atleast(5)
+#    dots += "."
+#    print (dots)
+#print ("On average it took {0:.2f} tries to get three matches".format(tries3/20))
+#print ("On average it took {0:.2f} tries to get four matches".format(tries4/20))
+#print ("On average it took {0:.2f} tries to get five matches".format(tries5/20))
+#t1 = time.clock()
+#print("That took {0:.4f} seconds.".format(t1 - t0))
