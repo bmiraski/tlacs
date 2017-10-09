@@ -31,19 +31,27 @@ class MyTime:
         return self.hours * 3600 + self.minutes * 60 + self.seconds
 
     def increment(self, seconds):
-        self.seconds += seconds
+        return MyTime(0, 0, (self.to_seconds() + seconds))
 
-        while self.seconds >= 60:
-            self.seconds -= 60
-            self.minutes += 1
+#        self.seconds += seconds
+#
+#        while self.seconds >= 60:
+#            self.seconds -= 60
+#            self.minutes += 1
+#
+#        while self.minutes >= 60:
+#            self.minutes -= 60
+#            self.hours += 1
 
-        while self.minutes >= 60:
-            self.minutes -= 60
-            self.hours += 1
+    def between(self, time1, time2):
+        return (self > time1) and (time2 > self)
 
     def after(self, time2):
         """ Return True if I am strictly greater than time2 """
         return self.to_seconds() > time2.to_seconds()
+
+    def __gt__(self, other):
+        return self.to_seconds() > other.to_seconds()
 
     def __add__(self, other):
         return MyTime(0, 0, self.to_seconds() + other.to_seconds())
@@ -95,6 +103,15 @@ class Point:
 
     def reverse(self):
         (self.x, self.y) = (self.y, self.x)
+
+testtime = MyTime(2, 8, 23)
+time1 = MyTime(1, 7, 22)
+time2 = MyTime(3, 5 ,18)
+
+print(testtime > time1)
+print(testtime.between(time1, time2))
+
+print(testtime.increment(-500))
 
 
 #test_suite()
